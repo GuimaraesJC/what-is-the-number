@@ -89,7 +89,63 @@ button {
   margin: 25px auto 0;
 }
 
+.display {
+  display: flex;
+  justify-content: center;
+}
 
+.display .display-number {
+  position: relative;
+  width: 75px;
+  height: 141px;
+}
+
+.display .display-number:not(:last-child) {
+  margin-right: 12px;
+}
+
+.display .display-number .segment {
+  position: absolute;
+}
+
+.display .display-number .top {
+  top: 0;
+  left: 3px;
+}
+
+.display .display-number .top-left {
+  top: 3px;
+  left: 0px;
+}
+
+.display .display-number .top-right {
+  top: 3px;
+  right: 0;
+}
+
+.display .display-number .center {
+  top: 60px;
+  left: 6px;
+}
+
+.display .display-number .bottom-left {
+  bottom: 3px;
+  left: 0;
+}
+
+.display .display-number .bottom-right {
+  bottom: 3px;
+  right: 0;
+}
+
+.display .display-number .bottom {
+  bottom: 0;
+  left: 3px;
+}
+
+.display .display-number .segment svg {
+  fill: var(--gray-400);
+}
 
 .actions-container input {
   width: 217px;
