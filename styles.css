@@ -147,6 +147,10 @@ button {
   fill: var(--gray-400);
 }
 
+.display .display-number .segment.active svg {
+  fill: var(--gray-900);
+}
+
 .actions-container input {
   width: 217px;
   height: 42px;

@@ -135,8 +135,8 @@
   </div>
 
   <div class="actions-container">
-    <input type="number" placeholder="Type the guess">
-    <button>
+    <input ttype="text" maxlength="3" pattern="([0-9])" oninput="this.value = this.value.replace(/[^0-9]/g,'');" placeholder="Type the guess">
+    <button onclick="handleClick()">
       Send
     </button>
   </div>
