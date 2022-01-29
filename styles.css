@@ -2,4 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  --gray-200: #f5f5f5;
+  --gray-300: #eee;
+  --gray-400: #ddd;
+  --gray-500: #cfcfcf;
+  --gray-600: #9e9e9e;
+  --gray-700: #434854;
+  --gray-800: #545964;
+
+  --orange-500: #ef6c00;
+  --orange-600: #f60;
+  --orange-700: #db6300;
+  --orange-800: #c0661c;
+
+  --red: #c30;
+  --green: #32bf00;
+  --black: #262a34;
+  --white: #fff;
+}
+
+body {
+  background: var(--gray-300);
 }
