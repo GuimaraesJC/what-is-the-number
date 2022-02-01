@@ -13,21 +13,46 @@ async function getRandomNumber(url) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  randomNumber = await getRandomNumber(URL);
-
-  const inputElement = document.querySelector('.actions-container input');
-
-  inputElement.addEventListener('keydown', event => {
-    if (event.target.value.length > 2) {
-      event.target.value = event.target.value.slice(0, 2);
-    }
-  });
+  startNewGame();
 });
 
 async function handleClick() {
-  const inputValue = document.querySelector('.actions-container input').value;
-  console.log(inputValue)
-  activateSegments(inputValue, 'hundreds');
+  resetSegments();
+
+  const guess = document.querySelector('.actions-container input').value;
+
+  if (guess === '') {
+    return;
+  }
+
+  if (Number(guess) < 0) {
+    alert('Try to be more positive ;)');
+    return;
+  }
+
+  displayNumbers(guess);
+}
+
+function displayNumbers(guess) {
+  switch (guess.length) {
+    case 1:
+      activateSegments(guess, 'units');
+      break;
+
+    case 2:
+      activateSegments(guess.split('')[0], 'dozens');
+      activateSegments(guess.split('')[1], 'units');
+      break;
+
+    case 3:
+      activateSegments(guess.split('')[0], 'hundreds');
+      activateSegments(guess.split('')[1], 'dozens');
+      activateSegments(guess.split('')[2], 'units');
+      break;
+
+    default:
+      alert('Try to be a little more... modest ;)');
+  }
 }
 
 const activeSegmentsPerNumber = {
@@ -44,17 +69,44 @@ const activeSegmentsPerNumber = {
 }
 
 function activateSegments(number, position) {
-  resetSegments();
-
   for (let segment of activeSegmentsPerNumber[number]) {
     document.querySelector(`.display .${position} .${segment}`).classList.add('active');
   }
 }
 
 function resetSegments() {
-  const elements = document.querySelectorAll(`.display-number .segment`);
+  const segments = document.querySelectorAll(`.display-number .segment`);
 
-  for (let element of elements) {
-    element.classList.remove('active')
+  for (let segment of segments) {
+    segment.classList.remove('active');
   }
+}
+
+function showNewMatchButton() {
+  const button = document.querySelector('.new-match');
+
+  button.classList.remove('hidden');
+}
+
+function hideNewMatchButton() {
+  const button = document.querySelector('.new-match');
+
+  button.classList.add('hidden');
+}
+
+async function startNewGame() {
+  resetSegments();
+
+  randomNumber = await getRandomNumber(URL);
+
+  console.log(randomNumber); // TODO: REMOVER
+
+  if (randomNumber === 502) {
+    displayNumbers(String(randomNumber));
+    showNewMatchButton();
+
+    return;
+  }
+
+  hideNewMatchButton();
 }
